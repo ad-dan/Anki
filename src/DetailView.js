@@ -7,10 +7,13 @@ import {
   ScrollView,
   FlatList,
   AsyncStorage,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import { LinearGradient } from 'expo';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const deviceWidth = Dimensions.get('window').width;
 export default class DetailView extends Component {
@@ -248,12 +251,14 @@ export default class DetailView extends Component {
             backgroundColor: 'transparent',
             zIndex: 100
           }}>
-          <Feather
-            name="arrow-left"
-            size={32}
-            color="#ffffff"
-            style={{ elevation: 2 }}
-          />
+          <TouchableOpacity onPress={() => this.props.navigation.pop()}>
+            <Feather
+              name="arrow-left"
+              size={32}
+              color="#ffffff"
+              style={{ elevation: 2 }}
+            />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.bgImgCont}>
@@ -283,19 +288,26 @@ export default class DetailView extends Component {
         <View style={styles.detView}>
           <Image
             source={require('../assets/curve.png')}
-            style={{ position: 'absolute' }}
+            style={{
+              position: 'absolute'
+            }}
           />
           <Text
             style={{
               marginTop: 16,
               fontSize: 21,
-              fontWeight: '600',
+              fontFamily: 'Med',
               color: '#fff',
               textAlign: 'center'
             }}>
             {data.title}
           </Text>
-          <Text style={{ color: '#757575', textAlign: 'center' }}>
+          <Text
+            style={{
+              color: '#757575',
+              textAlign: 'center',
+              fontFamily: 'Reg'
+            }}>
             {data.genres
               .map(gen => gen.name)
               .slice(0, 3)
@@ -308,8 +320,8 @@ export default class DetailView extends Component {
               flexDirection: 'row',
               justifyContent: 'center'
             }}>
-            <Text style={{ fontWeight: '600', fontSize: 12, color: '#fff' }}>
-              {data.score}
+            <Text style={{ fontFamily: 'Med', fontSize: 12, color: '#fff' }}>
+              {data.score || ''}
             </Text>
             <Feather
               name={'star'}
@@ -320,13 +332,13 @@ export default class DetailView extends Component {
           </View>
           <Text
             style={{
-              marginTop: 16,
+              marginTop: 8,
               color: '#707070',
               letterSpacing: 0.6,
               textAlign: 'center',
               fontSize: 10
             }}>
-            {data.rating}
+            {data.rating || ''}
           </Text>
         </View>
 
@@ -343,9 +355,9 @@ export default class DetailView extends Component {
                 fontSize: 22,
                 color: '#fff',
                 marginTop: -8,
-                fontWeight: '600'
+                fontFamily: 'Med'
               }}>
-              #{data.rank}
+              #{data.rank || ''}
             </Text>
             <Text style={{ fontSize: 8, color: '#fff' }}>MAL Rank</Text>
           </View>
@@ -355,9 +367,9 @@ export default class DetailView extends Component {
                 fontSize: 22,
                 color: '#fff',
                 marginTop: -8,
-                fontWeight: '600'
+                fontFamily: 'Med'
               }}>
-              {data.popularity}
+              {data.popularity || ''}
             </Text>
             <Text style={{ fontSize: 8, color: '#fff' }}>Popularity</Text>
           </View>
@@ -367,11 +379,11 @@ export default class DetailView extends Component {
                 fontSize: 22,
                 color: '#fff',
                 marginTop: -8,
-                fontWeight: '600'
+                fontFamily: 'Med'
               }}>
-              {data.members > MIO
-                ? `${(data.members / MIO).toFixed(1)}M`
-                : `${data.members / Math.pow(10, 3)}k`}
+              {data.members && data.members > MIO
+                ? `${(data.members / MIO).toFixed(2)}M`
+                : `${(data.members / Math.pow(10, 3)).toFixed(0)}k`}
             </Text>
             <Text style={{ fontSize: 8, color: '#fff' }}>Members</Text>
           </View>
@@ -382,12 +394,15 @@ export default class DetailView extends Component {
             flexDirection: 'row',
             paddingHorizontal: 36,
             height: 38,
-            marginTop: 24
+            marginTop: 24,
+            alignItems: 'center'
           }}>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, color: '#fff' }}>12 Episodes</Text>
-            <Text style={{ fontSize: 10, color: '#fff' }}>
-              {data.aired.string}
+            <Text style={{ fontSize: 14, color: '#fff', fontFamily: 'Reg' }}>
+              {data.episodes > 0 ? `${data.episodes} Episodes` : ' '}
+            </Text>
+            <Text style={{ fontSize: 10, color: '#fff', fontFamily: 'Reg' }}>
+              {data.aired.string || ''}
             </Text>
           </View>
           <View
@@ -397,19 +412,38 @@ export default class DetailView extends Component {
               flexDirection: 'row',
               alignItems: 'center'
             }}>
-            <Feather
-              name="cloud-snow"
-              size={32}
-              color="#ffffff"
-              style={{ elevation: 2, marginRight: 8 }}
-            />
+            {(() => {
+              const season = data.premiered.split(' ')[0];
+              if (season == 'Winter') {
+                return <Ionicons name="md-snow" size={32} color="#E3F2FD" />;
+              }
+              if (season == 'Fall') {
+                return (
+                  <MaterialCommunityIcons
+                    name="pine-tree"
+                    size={32}
+                    color="#FFF8E1"
+                  />
+                );
+              }
+              if (season == 'Summer') {
+                return <Ionicons name="ios-sunny" size={32} color="#ffebee" />;
+              }
+              if (season == 'Spring') {
+                return <Ionicons name="ios-leaf" size={32} color="#E8F5E9" />;
+              }
+            })()}
+
             <Text
               style={{
+                marginLeft: 8,
+                height: 32,
                 fontSize: 12,
                 textAlignVertical: 'center',
-                color: 'rgba(255,255,255,0.4)'
+                color: 'rgba(255,255,255,0.4)',
+                fontFamily: 'Reg'
               }}>
-              Fall 2015
+              {data.premiered || ' '}
             </Text>
           </View>
         </View>
@@ -418,13 +452,13 @@ export default class DetailView extends Component {
           <View style={{ paddingHorizontal: 36, paddingVertical: 80 }}>
             <Text
               style={{
-                fontSize: 14,
-                letterSpacing: 0.3,
-                lineHeight: 21,
+                fontSize: 16,
+                fontFamily: 'Reg',
+                lineHeight: 16 * 1.5,
                 color: '#fbfbfb',
                 textAlign: 'justify'
               }}>
-              {data.synopsis}
+              {data.synopsis || ''}
             </Text>
           </View>
         </View>
@@ -443,14 +477,20 @@ export default class DetailView extends Component {
             }}>
             <Text
               style={{
-                fontWeight: '600',
+                fontFamily: 'Med',
                 color: '#ffffff',
                 textAlign: 'right'
               }}>
               Manga
             </Text>
-            <Text style={{ marginLeft: 50, color: '#ffffff', width: 100 }}>
-              {data.related.Adaptation[0].name}
+            <Text
+              style={{
+                marginLeft: 50,
+                color: '#ffffff',
+                width: 100,
+                fontFamily: 'Reg'
+              }}>
+              {data.related.Adaptation[0].name || ''}
             </Text>
           </View>
           <View
@@ -462,7 +502,7 @@ export default class DetailView extends Component {
             <View>
               <Text
                 style={{
-                  fontWeight: '600',
+                  fontFamily: 'Med',
                   color: '#ffffff',
                   textAlign: 'right'
                 }}>
@@ -470,8 +510,14 @@ export default class DetailView extends Component {
               </Text>
             </View>
             <View>
-              <Text style={{ marginLeft: 50, color: '#ffffff', width: 100 }}>
-                {data.studios[0].name}
+              <Text
+                style={{
+                  marginLeft: 50,
+                  color: '#ffffff',
+                  width: 100,
+                  fontFamily: 'Reg'
+                }}>
+                {data.studios[0].name || ' '}
               </Text>
             </View>
           </View>
@@ -484,7 +530,7 @@ export default class DetailView extends Component {
             <View>
               <Text
                 style={{
-                  fontWeight: '600',
+                  fontFamily: 'Med',
                   color: '#ffffff',
                   textAlign: 'right'
                 }}>
@@ -497,9 +543,10 @@ export default class DetailView extends Component {
                   marginLeft: 50,
                   color: '#ffffff',
                   maxWidth: 120,
-                  lineHeight: 16 * 1.5
+                  lineHeight: 16 * 1.5,
+                  fontFamily: 'Reg'
                 }}>
-                {data.producers.map(prod => prod.name).join('\n')}
+                {data.producers.map(prod => prod.name).join('\n') || ''}
               </Text>
             </View>
           </View>
@@ -527,16 +574,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   circ: {
-    height: 78,
-    width: 78,
-    borderRadius: 78 / 2,
+    height: 84,
+    width: 84,
+    borderRadius: 84 / 2,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#707070'
   },
   detView: {
-    height: 160,
+    minHeight: 160,
     backgroundColor: '#212121',
-    width: deviceWidth
+    width: deviceWidth,
+    paddingVertical: 8
   }
 });

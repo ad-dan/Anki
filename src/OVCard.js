@@ -7,6 +7,9 @@ import Feather from '@expo/vector-icons/Feather';
 import { TouchableNativeFeedback } from 'react-native';
 
 const deviceHeight = Dimensions.get('window').height;
+const CoolText = ({ children }) => {
+  return <Text style={{ fontFamily: 'Reg' }}>{children}</Text>;
+};
 
 class OVCard extends Component {
   constructor(props) {
@@ -14,6 +17,7 @@ class OVCard extends Component {
   }
   render() {
     const anime = this.props.anime;
+    console.log('ANIME -->', anime.title);
     return (
       <View style={styles.mainCard}>
         <Image
@@ -47,7 +51,7 @@ class OVCard extends Component {
                   width: 180,
                   alignSelf: 'center',
                   borderLeftWidth: 3,
-                  borderLeftColor: 'red',
+                  borderLeftColor: '#f44336',
                   paddingVertical: 4,
                   marginTop: 16,
                   paddingLeft: 12
@@ -66,10 +70,10 @@ class OVCard extends Component {
                   <Text
                     style={{
                       fontSize: 14,
-                      fontWeight: '600',
+                      fontFamily: 'Med',
                       color: '#9e9e9e'
                     }}>
-                    {anime.score}
+                    {anime.score === 0 ? 'TBD' : anime.score}
                   </Text>
                 </View>
               </View>
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 21,
-    fontWeight: '600',
+    fontFamily: 'Med',
     color: '#fff'
   },
   ico: {
