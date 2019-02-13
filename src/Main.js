@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   View,
   Text,
@@ -6,12 +6,12 @@ import {
   StyleSheet,
   FlatList,
   AsyncStorage
-} from 'react-native';
+} from "react-native";
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo';
-import OVCard from './OVCard';
-import { DeckSwiper } from 'native-base';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { LinearGradient } from "expo";
+import OVCard from "./OVCard";
+import { DeckSwiper } from "native-base";
 
 class Main extends Component {
   constructor(props) {
@@ -23,13 +23,13 @@ class Main extends Component {
   async componentDidMount() {
     try {
       //
-      console.log('SEETPYE', this.props.seeType);
+      console.log("SEETPYE", this.props.seeType);
       const animemes = await AsyncStorage.getItem(
         `anime-${this.props.seeType}`
       );
       // console.log(animemes);
       if (!animemes) {
-        throw 'Error';
+        throw "Error";
       }
       // console.log('cached');
       const list = JSON.parse(animemes);
@@ -61,16 +61,16 @@ class Main extends Component {
       );
       // console.log(animemes);
       if (!animemes) {
-        throw 'Error';
+        throw "Error";
       }
-      console.log('cached');
+      console.log("cached");
       const list = JSON.parse(animemes);
       this.setState({
         animeList: list
       });
     } catch (e) {
       const { seeType } = this.props;
-      console.log('SEETPYE', this.props.seeType);
+      console.log("SEETPYE", this.props.seeType);
       const data = await fetch(
         `https://api.jikan.moe/v3/top/anime/1/${seeType}`
       );
@@ -86,29 +86,30 @@ class Main extends Component {
           animeList: list.top
         },
         () => {
-          console.log('sadasfd');
+          console.log("sadasfd");
         }
       );
     }
   }
   render() {
     const navigate = this.props.handleNav;
-    console.log('NEUE', this.state.animeList[0], 'neue');
+    console.log("NEUE", this.state.animeList[0], "neue");
     return (
       <LinearGradient
-        colors={['#c31432', '#240b36']}
+        colors={["#c31432", "#240b36"]}
         style={{
           flex: 1,
-          width: '100%',
+          width: "100%",
           paddingTop: 24,
-          justifyContent: 'flex-start'
-        }}>
+          justifyContent: "flex-start"
+        }}
+      >
         {this.state.animeList.length > 1 ? (
           <DeckSwiper
             // key={this.state.animeList[0].name}
             dataSource={this.state.animeList}
             renderItem={item => {
-              console.log('render');
+              console.log("render");
               return (
                 <OVCard anime={item} key={item.index} handleNav={navigate} />
               );
