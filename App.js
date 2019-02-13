@@ -23,7 +23,8 @@ class App extends React.Component {
       Ionicons: require('@expo/vector-icons/fonts/Ionicons.ttf'),
       FontAwesome: require('native-base/Fonts/FontAwesome.ttf'),
       Reg: require('./assets/Futura-Book.otf'),
-      Med: require('./assets/Futura-Medium.otf')
+      Med: require('./assets/Futura-Medium.otf'),
+      Demi: require('./assets/Futura-Demi.otf')
     });
     this.setState({ loading: false });
   }

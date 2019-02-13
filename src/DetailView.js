@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -9,14 +9,14 @@ import {
   AsyncStorage,
   Dimensions,
   TouchableOpacity
-} from "react-native";
-import Feather from "@expo/vector-icons/Feather";
-import { LinearGradient } from "expo";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import SvgUri from "react-native-svg-uri";
-import FallSvg from "../assets/autumn-leaf-svgrepo-com.svg";
-const deviceWidth = Dimensions.get("window").width;
+} from 'react-native';
+import Feather from '@expo/vector-icons/Feather';
+import { LinearGradient } from 'expo';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import SvgUri from 'react-native-svg-uri';
+import FallSvg from '../assets/autumn-leaf-svgrepo-com.svg';
+const deviceWidth = Dimensions.get('window').width;
 export default class DetailView extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +27,7 @@ export default class DetailView extends Component {
   }
   async componentDidMount() {
     const { navigation } = this.props;
-    const malID = navigation.getParam("mal", 1);
+    const malID = navigation.getParam('mal', 1);
     const res = await fetch(`https://api.jikan.moe/v3/anime/${malID}`);
     const d = await res.json();
 
@@ -38,7 +38,7 @@ export default class DetailView extends Component {
   }
   render() {
     if (this.state.loading) {
-      return <View style={{ flex: 1, backgroundColor: "#212121" }} />;
+      return <View style={{ flex: 1, backgroundColor: '#212121' }} />;
     }
     // const data = {
     //   request_hash: 'request:anime:f59830319b6464544c1289856d6a60a7fa2d2220',
@@ -240,17 +240,17 @@ export default class DetailView extends Component {
       <ScrollView
         style={{
           paddingTop: 24,
-          backgroundColor: "#7717E4"
+          backgroundColor: '#7717E4'
         }}
       >
         <View
           style={{
-            position: "absolute",
+            position: 'absolute',
             left: 32,
             top: 32,
             height: 32,
             width: 32,
-            backgroundColor: "transparent",
+            backgroundColor: 'transparent',
             zIndex: 100
           }}
         >
@@ -267,7 +267,7 @@ export default class DetailView extends Component {
         <View style={styles.bgImgCont}>
           <Image
             source={{ uri: data.image_url }}
-            resizeMode={"cover"}
+            resizeMode={'cover'}
             style={styles.bgImg}
             blurRadius={1}
           />
@@ -275,65 +275,66 @@ export default class DetailView extends Component {
         </View>
         <View
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: 220,
             right: 32,
             width: 48,
             height: 48,
-            backgroundColor: "#212121",
+            backgroundColor: '#4B0699',
             zIndex: 100,
             borderRadius: 48 / 2,
-            alignItems: "center",
-            justifyContent: "center"
+            alignItems: 'center',
+            justifyContent: 'center',
+            elevation: 100
           }}
         >
           <Feather size={20} color="#FF4081" name="heart" />
         </View>
         <View style={styles.detView}>
           <Image
-            source={require("../assets/curve.png")}
+            source={require('../assets/curve.png')}
             style={{
-              position: "absolute"
+              position: 'absolute'
             }}
           />
           <Text
             style={{
               marginTop: 16,
               fontSize: 21,
-              fontFamily: "Med",
-              color: "#fff",
-              textAlign: "center"
+              fontFamily: 'Med',
+              color: '#fff',
+              textAlign: 'center'
             }}
           >
-            {data.title ? data.title : " "}
+            {data.title ? data.title : ' '}
           </Text>
           <Text
             style={{
-              color: "#EEE",
-              textAlign: "center",
-              fontFamily: "Reg"
+              color: '#EEE',
+              textAlign: 'center',
+              fontFamily: 'Reg'
             }}
           >
             {data.genres
               ? data.genres
                   .map(gen => gen.name)
                   .slice(0, 3)
-                  .join(" | ")
-              : " "}
+                  .join(' | ')
+              : ' '}
           </Text>
           <View
             style={{
               marginTop: 8,
-              alignItems: "center",
-              flexDirection: "row",
-              justifyContent: "center"
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'center'
             }}
           >
-            <Text style={{ fontFamily: "Med", fontSize: 12, color: "#fff" }}>
-              {data.score || " "}
+            <Text style={{ fontFamily: 'Med', fontSize: 12, color: '#fff' }}>
+              {data.score || ' '}
             </Text>
             <Feather
-              name={"star"}
+              name={'star'}
               color="#e0e0e0"
               size={14}
               style={{ marginLeft: 8 }}
@@ -342,13 +343,13 @@ export default class DetailView extends Component {
           <Text
             style={{
               marginTop: 8,
-              color: "#e0e0e0",
+              color: '#e0e0e0',
               letterSpacing: 0.6,
-              textAlign: "center",
+              textAlign: 'center',
               fontSize: 10
             }}
           >
-            {data.rating || " "}
+            {data.rating || ' '}
           </Text>
         </View>
 
@@ -356,27 +357,27 @@ export default class DetailView extends Component {
           style={{
             marginTop: 50,
             marginBottom: 16,
-            flexDirection: "row",
-            justifyContent: "space-around"
+            flexDirection: 'row',
+            justifyContent: 'space-around'
           }}
         >
           <View style={styles.circ}>
             <Text
               style={{
                 fontSize: 18,
-                color: "#fff",
+                color: '#fff',
                 marginTop: 12,
-                fontFamily: "Med"
+                fontFamily: 'Med'
               }}
             >
-              {data.rank || " "}
+              {data.rank || ' '}
             </Text>
             <Text
               style={{
                 fontSize: 12,
 
                 lineHeight: 16,
-                color: "#eee"
+                color: '#eee'
               }}
             >{`MAL\nRank`}</Text>
           </View>
@@ -384,19 +385,19 @@ export default class DetailView extends Component {
             <Text
               style={{
                 fontSize: 18,
-                color: "#fff",
+                color: '#fff',
                 marginTop: 12,
-                fontFamily: "Med"
+                fontFamily: 'Med'
               }}
             >
-              {data.popularity || " "}
+              {data.popularity || ' '}
             </Text>
             <Text
               style={{
                 fontSize: 12,
 
                 lineHeight: 16,
-                color: "#eee"
+                color: '#eee'
               }}
             >
               Popularity
@@ -406,86 +407,87 @@ export default class DetailView extends Component {
             <Text
               style={{
                 fontSize: 22,
-                color: "#fff",
+                color: '#fff',
                 marginTop: -8,
-                fontFamily: "Med"
+                fontFamily: 'Med'
               }}
             >
               {data.members && data.members > MIO
                 ? `${(data.members / MIO).toFixed(2)}M`
                 : `${(data.members / Math.pow(10, 3)).toFixed(0)}k`}
             </Text>
-            <Text style={{ fontSize: 12, color: "#fff" }}>Members</Text>
+            <Text style={{ fontSize: 12, color: '#fff' }}>Members</Text>
           </View>
         </View>
 
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
             paddingHorizontal: 36,
             height: 38,
             marginTop: 24,
-            alignItems: "center"
+            alignItems: 'center'
           }}
         >
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, color: "#DAEAF0", fontFamily: "Reg" }}>
-              {data.episodes > 0 ? `${data.episodes} Episodes` : " "}
+            <Text style={{ fontSize: 14, color: '#DAEAF0', fontFamily: 'Reg' }}>
+              {data.episodes > 0 ? `${data.episodes} Episodes` : ' '}
             </Text>
-            <Text style={{ fontSize: 10, color: "#DAEAF0", fontFamily: "Reg" }}>
-              {data.aired.string || " "}
+            <Text style={{ fontSize: 10, color: '#DAEAF0', fontFamily: 'Reg' }}>
+              {data.aired.string || ' '}
             </Text>
           </View>
           <View
             style={{
               flex: 1,
-              justifyContent: "center",
-              flexDirection: "row",
-              alignItems: "center"
+              justifyContent: 'center',
+              flexDirection: 'row',
+              alignItems: 'center'
             }}
           >
             {(() => {
-              const season = data.premiered.split(" ")[0];
-              if (season == "Winter") {
+              if (!data.premiered) return;
+              const season = data.premiered.split(' ')[0];
+              if (season == 'Winter') {
                 return (
                   <Image
                     style={styles.weatherIco}
                     source={{
                       uri:
-                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARaSURBVGhD7ZpZ6FVVFIdvI2g2aJpGZJNok70olGRRkRgNmqIPgs0+FQVWDz4YKga9RAkVRFA0kUagpWL2YBoVQWpUliiBIZqkPhRNmI3fd+5Zerjce//nf+cD9wcfZ+/L2eecPa299tq31Fd7dAn8DE8kuQLrNvgP1ie5gupZsBLBATgbOqKT0+tgdWJ6HQE3l5Ol5fArWImj8A2cBQ63SaBOSK8t1VD4AVYnufw6HWztrbAd/PCrQVUbWl/A3/A6/AF3QUs1Fnzp3iSXX6fBLrCs/AOXg6qsiD3+AcS9f8Gd0FI1WhHlkPkN4gNt6WUwJ81bkRtgR5oPHoGm9ADMhxjbqlZFhsFjcF2Sq67zwHng8HoT/gWfZYWyV/kOnk/TS6BhnQp2qQ/aBteAqqyIE/EecPz7+4dQTxeClVY+83OwXPAL2CC+X10KjRqXY7od/GBfYOvZik5Q8/5u+rM0L1tgAtTTLXAR2Mv3QzRA4Nx5Gc6Fk2AuDIemNQRccaPb/0yv9pYvNW2l5sFAZvIC8P49kG2AaKxDEO9xpd+Qpp+Clskh9Q7Ey8Xx/iRokfLIYfU7RPloAHvevJPd9UPTHvdIU3OkUg6JnZB9gbwPjuOBNBJ+gihnb9o4qto68h7EvfIwNKVxsBbigTEMbNnDadrh9jRoXmvJBfFTeAPWgIvdVeBcuRd8jobC+9TH4PBaBJrj2dCwlkLMCVtTe35xmrdCuhovQFi3H+EOGEhaoTHlZOk1sGyguzIa9CB8ftNykttqDoEXwaGhqq0jV8Jm8PdP/GEQWgi6PJa1lzdB3jmXW1PginLymGotiMpV2Qk9WN0KPnNdkuuQ6lWkUZ0D9qReRMd0PliR75NcgeVqq51vqW3vq68CScfPFXhVkiuwzgStku5B4TQDZoG9UVkR3Ym74dok1+MK19o9wvQ0bUX0eL9N8zpuPS8jFJU7tSxW5noohNxHPwfZCri9XQynQCHkPHgQYn+RRZ8qzza2J6TDFh/+UXo9Akb74nc3RD0tW/pL2A1arqzVikjHfngXuiG30fV2njXVS+uIu0g3d1pT5a4xt2Jn6K6t29LIhDV1yLtbNXiXW0Y1ur0AaoAeB2NdMU+NG8+EtqhdpnkaRAXEpcCITlt0BhyElUmutTL26zC6CSJgtwDaoti/f53k8stevBHcbebRZWDYyJhxy/Qo2DKO4cqKGDLyvCOO1WrJxddyBt+6IqOAWjQ/wrVHr9i0oVSDdxES3Qj1NBW8z/XJBhkPBsonQsekRfMQxg+phrHgPEPgK/B+r3Hg8wp0VE7ElyBbAXvKs4yB5CKnI2p4Ncp6uGPo1VBpx6S78AxEvDeLi5cuTfaoLqvKY4VgMnRUrvqOa19uRd5O03oBEfuVV6Ga/COA7sZb4P4mzghXQEel2TQw4TGDR8uVVkunUyPgnwDyyGdYfl+S66IaXUeyegjuKye7p1GgxbGXCi+dy0aOEvo6rlLpf6FZZUzk2KnNAAAAAElFTkSuQmCC"
+                        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAADFwAAAxcBwpsE1QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPnSURBVGiB7dnLjxVFFAbw08MENSEsAMND5BGGxNfSiNG/wARcIIlbI0u3mhhX+IpGiBtQYyIaYGMcYwisRHSlgPEPIBrAR1ReEg1DIPPi5+LWZGru9J3bcx/TY+RLbrr71KlT3+l7qurr7og76A/wA07VzaNrSJhvv4F+kOkEeBq3sutb2FG1f62JYABP4q6IEBGDWfNgw8XdeAJFP4l0VM84il/xWaqkV7K2GaWFl5PpU5zF52UxB8uM88CjHfYbj4gN6RcRcWUO36vp+Gw6/tThmK3R6cRMJXXaNCbxEdZmthV4DxOZ7Tt0fvOxHc8012lZIiiwC0+1iXkBI/gAYynUSEb6r3Qcx4dp8p/rOIk06D8p6Blsa5UIHsf3yfx3m5gbsTWdP4STZuMkHk4+W7GxVbyqq9bzEXEpIrZFxGkcwrqM1DocjohTEfFYRFyMiN1tYhbRWKkiIsYi4nqJz/WIGK3IsRqwHPtalMHU+VjyWV4h3jncxPsYbSqn/Hw0+dzE+V4m9CBOlJTBCTxQMcagxsSdwoTGxF6R2com+7fozd6HTRguSWQYmyrG+LKp7+6sDTPm3e4m32NlMStnh2V4MyLORsSuiLiRNd9ItrN4A8vahBuIiN8iYjhd3zuH7+p0HE597qnKeRawE3+kO3JbmuzZXVqHw6lN8t1ZIe4SDYmyVNJaWcxb2IG7ks+SjhNIgxW4kYLPZ/kdMQ99lEiPZ4mMY3tX5FsMsquZWHMiyTa1IXZEoixm39GPQTWky8I+WNVy91qgW/V7JqZ35zu4g/8dsBf76ubRNdJOfbtuHlUwQ2thA7ZkpiL9ptqHsCEWO/BnkgYHzJbUB1Lb73XzbAvsyfTO1SyR/Pl5T908KyGVz3GzcRxDdfNrhbLnkYGImCyxT7bwX3zAa6afyctKawyv1s2zLXC5wmS/VDfPtsDmfPltVrfYgs01cTuI81jRSedJlM2XBQe+SPf1ExzD/ry9nYx/OxaBTMeqiBhJl8+l44/1sOkC+LlpKziElblPtw9W+WB7I6IoiuLFXsXM8FVErImIa9H4R5YVRXGtD+MsjMBMq+cFHOxl0E35Tl+ywg3h/jYx7sMVjRd/9UB7gTmhjcBMiUxovKBemWzrMdebx95CjwRmWkrhYw09N4lf+p/BTBKP4Buz8bX0gaZN/zU40tR3FO/Ml0u3q9ZYTK/vOUai8cGzJfBuRLwQEUsz85GIeKkoistd8qoOvK4LgYmLqYyOaezWcHTBEsiITAnM/XNM9pYCE6uxPp2v0nj7PiH7pLcg0F5gDpmHwMRbuIa1veY6L6hZYPZMosQiEZj/efwLBqYXH+k6nl8AAAAASUVORK5CYII='
                     }}
                   />
                 );
               }
-              if (season == "Fall") {
+              if (season == 'Fall') {
                 return (
                   <Image
                     style={styles.weatherIco}
                     source={{
                       uri:
-                        "data:image/png;base64,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"
+                        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB2wAAAdsBV+WHHwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGPSURBVEiJ7ZW9SgNBFIXPxHRWSWEhmBfwJxHJE4j4AmqT3kb7vINWaQUttfAF/C3SBCubNAFBDARFDMTCQJDEzyITXDZrMptkbeIHw+7euXPPnTMwK/3jCHAIHPy16BrQAdrASpRCVeAYyNjvS364sLEMcAI8TVK46BG6px9vrOhSM+aofe15Xw2Y98auJil845gnSbchcgcDxIH3AIv9NIAZl5pOOzbGtCW5nF3RGNOZmLDFxcLxbAYqwCmwAcRsbNnB6iWbG7Nrz4BKGOGSp9gLUADSQG2AaM3mFOyaHiUXwRiwCZQDCn8BrQHCLZvjp2xrBh8rkKd7Q0VFFcj39LxdpOyIipSkhd92nQOaEey2CeQGtgXsRCC87dcJOvD1UXwcQl9N4w8Aj5LmJL1JepVUt2NL0uwQgQ9J55KSkhL2mZRUN8akQ7cLZEPYmnWp6Xpl7ofoc88lqc/qIIAHSZ+SniU17Ni100fq2pqQNC9JxpjFEI2Go+frqOvD/J0myvQJx8dYeydp5DOePr4B1HvxvgzQc60AAAAASUVORK5CYII='
                     }}
                   />
                 );
               }
-              if (season == "Summer") {
+              if (season == 'Summer') {
                 return (
                   <Image
                     style={styles.weatherIco}
                     source={{
                       uri:
-                        "data:image/png;base64,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"
+                        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAADFwAAAxcBwpsE1QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAVKSURBVGiB5ZpdiFVVFMf/exwcP0YlzaApJUqnyMh0bKqHNMOKSistqB58jh6DSOihzKnMGUazKDIiCOpNCC20ND8wsCjHYNK+RH3IKUzND8jM5s6vh73O3M2Zc8+5c++53qwFm3vPWuv819p77X322uscqYYEjAa+AHYDo2ppq6YEvEqR1tTbn4oIuBXoBwrW+oFb6u3XsAhoBg5ZJF4GVtr/g8DYevtXNgGrzfFeoMlar/G66+1fWQTMtal0HpgV8GcZrwDcXk8fMwkYa9MH4IUE+QqT/QiMvpCObQT6gE1AB/AQMDVF/xVzdB/QlCBvMhnAyhScqWarw2z3ARvSfHUZHTki6YoE0TFJPdb2WrtB0ocmv805t6cE5s2SdtvlYkn7JM221mZtcsKtR5xzU9L8TevIRzZ67wCdwHbgFOm0ogzcjgyMU2ar02wDbEzDbMyw2SNpoaTfnXPPmBNO0nT5kZtjv9eb/npJQ9ZGAi2XH/Uldv2d2dpjvwecc5i9rsCXygi430ZjR8UgVRKw03y4L00va420SOqTdErSxGiUMu5plfSIpHslXSZpkolOSDoqabOk9c65A2VgOUknJU2Q1OKc+zXrnjSwX2xEpmXozQK2ZMz9kD4BZmZgTjfdvoo7EIBFC/7REvJGfHJYML2jwNv4x+cMYLK1GcBik/1mugWgGxhRAvuxchZ6uR1ZbmCrEmQTgij8CbwENJeBOQ6ff50LojM+Qa/T5M/n0ZFowW+P8ZuAz012GLixAuyZdi/ALmKbKLDDZKkLvVxjLQZ2PMZfZ/yfgSurwJ8CHDGsN2KyE8a/vFL8EOweAzsZ8NqBAeAPgsSwChttwFnDnB3wz5jtu6sBH4nfgc8bWHcg22q8zF18GPZejNZLwItOmOfxCefI4YLOAb41kAL+fDHCZK3RVAPG5diR8cFUmma8RmANxSdiL9BWDlizzf0Bu/EbYs964FmTrcurEwF2lFcti/Hbgf0mGzAfk0+aphyl2AUL65gEvc9M54EadGSxYW9JkI0B1gbR2YfPpAcV4lHYD7SnGPspDH/OHbnWsH9I0UmKTrOAL4MorE2KQgwoepLktj4C7PGGfTpDLx6d3Q0qJo4F+eSwP8NepD9QndvJPsZslKJ+eV8Lg/r2ZFgG/GW9OwjML2nJn7cBpufgeBz7OsP+PkVnPsW6wDnzvTFUCBf73/jz95AyJ7CtTot9FLDKfBu62GPKUXSiZO4wsCCm87TJ3q1BR94z7Kdi/AUUc7KhUUgBjG+Ig6k2F35DXM1wN8QYcFqKEqXutUhRNge86lKUmIGkpPEmG6W8k8Z+guMAeSSNAVipND6q7+aZxnfFZLmm8Q8a2NYYvwFfiQQ4BtxRAfadttYANgANMXnZ6VBDloKkaOrsDZnOuQFJSyVtlXSppM1AFzBJGQRMsjW3Sb7K8qmkpYYZUmSz6ulbSfHhDPA+sAT/hBtlrRV4GPggmPsXtPhwUZSDalGgu1rSIkl3SbpG0lUmOizpoPxU/Ng5d6gMrHwKdMAiG5FtFQHkQPhiNsDCNL2sxR7tooMFZMDZfH/c5vdOm/NngTdLzfeYcyOAt+yeM4bRbZitFomIItupO3pWvhLdPBHolK++z5YPdRI9Kem4pOcycJdLeiK4nmctotPAXvnq/CUxXxLpf/Oi56J59ZYr4feUHnN0yGtoimlND+Wk4fUkfEIZvYaeG/DnUXxtnbp//GuI4jvCQ/gqTfglRG6pf80Jf5aJvnR4DXjd/vdSzZmiHsR/4aOaiCie+gA66u1PxYT/8Oxr4Ctq/OHZP4KFuxq4WY4zAAAAAElFTkSuQmCC'
                     }}
                   />
                 );
               }
-              if (season == "Spring") {
+              if (season == 'Spring') {
                 return (
                   <Image
                     style={styles.weatherIco}
                     source={{
                       uri:
-                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALMSURBVGhD7dlLqE1RHMfx4/1mgEKUPGJiIK8BEyaKvMJEKRMyMRODKwYGBpQYkAETpcRMKa8USSiFpMgjBsozr7wf3597Vi2r/91nn7PXWfuq/atP95x99rn7/z9nn73X2rtWpUqV0tOj/ve/zjjcxIq/z7p55qBn58N/MgoP8Bs/sBRWZmJg58PysgC/cAcLtaCeAbgFNeF8wiy46Ns6Br3/oBaUlX64B1eoCtoO/SYO1JeFHmMo5uJVfZn8xGyUkvXwi3QuQE1Zr8kVfA6WyRmUknDXKUrNT0bSTIRVTFFbkTQbYBVS1DkkjY4yViFFvUTSnIVVSAzDkCzXYBURw3gky21YRcQwDclyFVYRMeiMnyynYRURwyAky25YRRT1CEmzClYhRR1H0gzGB1jFFLESydPVCLdVz9AXyTMCOhNbRbViNUrLInyFVVgzDqH0LMFbWAU2oqH7PnSbCxRjoGnrN1gFW25gPpKlmU9rODbiCK7DL/wJTmIHmh2GRPnGNHV9jfPYA10N6Y888RtZrAU5Mh0dOIGH0O43EoWjT9cvSN5hPyYgK/57shrRsGQT7sN/j7yHdbmp6WgD4T93vmMvdIK04q/bVSNr8Bz+ur5LiJJ5sDbge4oZCOOvEzYyBKfgr2PRUS1K+iDP4fUjlsOP/7rfiIbqeec0OldFy2FYGwldhh//NdeIfrjuUmojbxB12KIjibWhUKNGekH7vL88y05ET54LDo0a2Rwsy6JddTSiZyq+wNqok9XIWjQzlNmCtmUbrI06WY3cDZ5n0T2V3mhbNFTQLM7auGQ1kpfmJWPR9uimzEVYRRRtRLcarPNR26JD4lGEhRRpRBcepqCU6AesY70rptVGNEDUyLnUqIBd0OAubET3Dq3CHd3xKuWCQ1Y0cAwnShr6h8W/gOYly9DWI1PM6H7hOmgX1JR4EqpUqVKl1dRqfwCH7Mda7vGRKQAAAABJRU5ErkJggg=="
+                        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB2wAAAdsBV+WHHwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFySURBVEiJ7dVNSxVRGAfwmTYGpd/EKOii0TbbVrQvCgxs5UJwaUtxl4s+QG2CWloQbe6uSyL5ARS3oZJuBPNGPzfHmm53OmeOI7Twv5qX53l+Z96YojjP/x4sYfGskYdYwXjYn/c7c+HYFbzDg7bQy9gNyAGeoV+B+1gI52AHl9qAH2ueR7G5FxLsexnrjfakwFcz4GuxgjJWgMOiKEYawt/Lsrz4r4KUK86JWEEKvJ0Bf20D7mXA0Z4U+FUG/DKj5+/gfYNveKUVNMBj+JiAfsBoa3DAS9zFW2xVsC28wR1EP88Yso81vMCtYQNP1JoFToXeNew1gVcHbuEXdGIwOlgf6P3cBF4e8vyOMF0H44k//1oned4EvjlkwCD0ax/TdfW4kQyHYb0UGBPhbgzLp0ZoGNzBjwS4W4P2cb0xHIY/TYDrMpOFVoBZlZcmAf6J+VOhFWRSeOYReAO3W0EHFjBR2e7iGzbxGvdxVv/38+TnGN1cIbZY12RMAAAAAElFTkSuQmCC'
                     }}
                   />
                 );
@@ -497,12 +499,12 @@ export default class DetailView extends Component {
                 marginLeft: 8,
                 height: 32,
                 fontSize: 12,
-                textAlignVertical: "center",
-                color: "rgba(255,255,255,0.4)",
-                fontFamily: "Reg"
+                textAlignVertical: 'center',
+                color: '#DAEAF0',
+                fontFamily: 'Reg'
               }}
             >
-              {data.premiered || " "}
+              {data.premiered || ' '}
             </Text>
           </View>
         </View>
@@ -512,62 +514,62 @@ export default class DetailView extends Component {
             <Text
               style={{
                 fontSize: 16,
-                fontFamily: "Reg",
+                fontFamily: 'Reg',
                 lineHeight: 16 * 1.5,
-                color: "#DAEAF0",
-                textAlign: "justify"
+                color: '#DAEAF0',
+                textAlign: 'justify'
               }}
             >
-              {data.synopsis || ""}
+              {data.synopsis || ''}
             </Text>
           </View>
         </View>
-        <View style={{ alignItems: "center", marginVertical: 14 }}>
-          <Text style={{ fontFamily: "Med", fontSize: 20, color: "#ffffff" }}>
+        <View style={{ alignItems: 'center', marginVertical: 14 }}>
+          <Text style={{ fontFamily: 'Demi', fontSize: 20, color: '#ffffff' }}>
             CREDITS
           </Text>
         </View>
         <View
           style={{
             paddingHorizontal: 36,
-            backgroundColor: "#7717E4",
+            backgroundColor: '#7717E4',
             paddingVertical: 52
           }}
         >
-          <Text style={{ fontSize: 16, fontFamily: "Med", color: "#E505CA" }}>
+          <Text style={{ fontSize: 16, fontFamily: 'Demi', color: '#E505CA' }}>
             Manga
           </Text>
           <Text
             style={{
               fontSize: 16,
-              color: "#ffffff",
+              color: '#ffffff',
               marginTop: 8,
-              fontFamily: "Reg",
-              color: "#DAEAF0",
+              fontFamily: 'Reg',
+              color: '#DAEAF0',
               marginBottom: 26
             }}
           >
-            {data.related.Adaptation[0].name || ""}
+            {data.related.Adaptation[0].name || ''}
           </Text>
 
-          <Text style={{ fontSize: 16, fontFamily: "Med", color: "#E505CA" }}>
+          <Text style={{ fontSize: 16, fontFamily: 'Demi', color: '#E505CA' }}>
             Studio
           </Text>
 
           <Text
             style={{
               fontSize: 16,
-              color: "#ffffff",
+              color: '#ffffff',
               marginTop: 8,
-              fontFamily: "Reg",
-              color: "#DAEAF0",
+              fontFamily: 'Reg',
+              color: '#DAEAF0',
               marginBottom: 26
             }}
           >
-            {data.studios[0].name || " "}
+            {data.studios[0].name || ' '}
           </Text>
 
-          <Text style={{ fontSize: 16, fontFamily: "Med", color: "#E505CA" }}>
+          <Text style={{ fontSize: 16, fontFamily: 'Demi', color: '#E505CA' }}>
             Producers
           </Text>
 
@@ -575,14 +577,14 @@ export default class DetailView extends Component {
             style={{
               lineHeight: 16 * 1.5,
               fontSize: 16,
-              color: "#ffffff",
+              color: '#ffffff',
               marginTop: 8,
-              fontFamily: "Reg",
-              color: "#DAEAF0",
+              fontFamily: 'Reg',
+              color: '#DAEAF0',
               marginBottom: 26
             }}
           >
-            {data.producers.map(prod => prod.name).join("\n") || ""}
+            {data.producers.map(prod => prod.name).join('\n') || ''}
           </Text>
         </View>
       </ScrollView>
@@ -592,31 +594,31 @@ export default class DetailView extends Component {
 
 const styles = StyleSheet.create({
   bgImgCont: {
-    backgroundColor: "#212121",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#212121',
+    alignItems: 'center',
+    justifyContent: 'center',
     width: deviceWidth
   },
   bgImg: {
     width: deviceWidth,
     height: 240,
-    position: "absolute"
+    position: 'absolute'
   },
   mainImg: {
     width: 168,
     height: 240,
-    alignSelf: "center"
+    alignSelf: 'center'
   },
   circ: {
     height: 54,
     width: 84,
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexDirection: "column-reverse"
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'column-reverse'
   },
   detView: {
     minHeight: 160,
-    backgroundColor: "#7717E4",
+    backgroundColor: '#7717E4',
     width: deviceWidth,
     paddingVertical: 8
   },

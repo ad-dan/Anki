@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
+import React, { Component } from 'react';
+import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 // import { MaterialCommunityIcons } from '@expo/vector-icons';
 // import { LinearGradient } from 'expo';
-import Feather from "@expo/vector-icons/Feather";
+import Feather from '@expo/vector-icons/Feather';
 
-import { TouchableNativeFeedback } from "react-native";
+import { TouchableNativeFeedback } from 'react-native';
 
-const deviceHeight = Dimensions.get("window").height;
+const deviceHeight = Dimensions.get('window').height;
 const CoolText = ({ children }) => {
-  return <Text style={{ fontFamily: "Reg" }}>{children}</Text>;
+  return <Text style={{ fontFamily: 'Reg' }}>{children}</Text>;
 };
 
 class OVCard extends Component {
@@ -17,55 +17,57 @@ class OVCard extends Component {
   }
   render() {
     const anime = this.props.anime;
-    console.log("ANIME -->", anime.title);
+    console.log('ANIME -->', anime.title);
     return (
       <View style={styles.mainCard}>
         <Image
-          source={{ uri: anime["image_url"] }}
+          source={{ uri: anime['image_url'] }}
           style={[styles.bgImg, { zIndex: -2 }]}
           blurRadius={2}
         />
-        <View style={[styles.bgImg, { backgroundColor: "rgba(0,0,0,0.3)" }]} />
+        <View style={[styles.bgImg, { backgroundColor: 'rgba(0,0,0,0.3)' }]} />
         <View style={styles.itemCard}>
           <View
             style={{
-              backgroundColor: "#212121",
+              backgroundColor: '#212121',
               borderTopLeftRadius: 8,
               borderTopRightRadius: 8
             }}
           >
             <Image
-              source={{ uri: anime["image_url"] }}
+              source={{ uri: anime['image_url'] }}
               style={styles.itemImg}
             />
           </View>
           <View style={styles.itemDesc}>
             <TouchableNativeFeedback
               onPress={() => {
-                this.props.handleNav("Det", {
-                  mal: anime["mal_id"]
+                this.props.handleNav('Det', {
+                  mal: anime['mal_id']
                 });
               }}
             >
               <View
                 style={{
-                  marginLeft: 10,
-                  width: 180,
-                  alignSelf: "center",
-                  borderLeftWidth: 3,
-                  borderLeftColor: "#A569EA",
+                  width: '80%',
+                  alignSelf: 'center',
                   paddingVertical: 4,
-                  marginTop: 16,
-                  paddingLeft: 12
+                  marginTop: 16
                 }}
                 onPress={() => {
-                  console.log("xd");
+                  console.log('xd');
                 }}
               >
                 <Text style={styles.title}>{anime.title}</Text>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
                   <Feather
-                    color="#9e9e9e"
+                    color="#ffffff"
                     name="star"
                     size={14}
                     style={styles.ico}
@@ -73,11 +75,11 @@ class OVCard extends Component {
                   <Text
                     style={{
                       fontSize: 14,
-                      fontFamily: "Med",
-                      color: "#9e9e9e"
+                      fontFamily: 'Med',
+                      color: '#ffffff'
                     }}
                   >
-                    {anime.score === 0 ? "TBD" : anime.score}
+                    {anime.score === 0 ? 'TBD' : anime.score}
                   </Text>
                 </View>
               </View>
@@ -92,18 +94,20 @@ class OVCard extends Component {
 const styles = StyleSheet.create({
   mainCard: {
     height: deviceHeight - 20,
-    backgroundColor: "#eee",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: '#eee',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   bgImg: {
-    position: "absolute",
-    height: "100%",
-    width: "100%"
+    position: 'absolute',
+    height: '100%',
+    width: '100%'
   },
   itemCard: {
-    minHeight: 390,
-    width: 215
+    minHeight: 400,
+    width: 215,
+    marginTop: -80,
+    elevation: 10
   },
   itemImg: {
     width: 215,
@@ -111,17 +115,18 @@ const styles = StyleSheet.create({
     borderRadius: 8
   },
   itemDesc: {
-    backgroundColor: "#212121",
-    minHeight: 84,
-    paddingBottom: 26,
-    paddingLeft: 4,
+    backgroundColor: '#212121',
+    minHeight: 100,
+    paddingBottom: 16,
     borderBottomRightRadius: 8,
     borderBottomLeftRadius: 8
   },
   title: {
-    fontSize: 21,
-    fontFamily: "Med",
-    color: "#fff"
+    fontSize: 20,
+    fontFamily: 'Med',
+    color: '#A569EA',
+    textAlign: 'center',
+    marginBottom: 12
   },
   ico: {
     marginRight: 8
