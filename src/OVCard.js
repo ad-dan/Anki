@@ -107,7 +107,11 @@ const styles = StyleSheet.create({
     minHeight: 400,
     width: 215,
     marginTop: -80,
-    elevation: 10
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 1
   },
   itemImg: {
     width: 215,
@@ -124,9 +128,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontFamily: 'Med',
-    color: '#A569EA',
+    color: '#E91E63',
     textAlign: 'center',
-    marginBottom: 12
+    marginBottom: 12,
+    lineHeight: 1.2 * 20
   },
   ico: {
     marginRight: 8
