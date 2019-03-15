@@ -22,6 +22,7 @@ export default class DetailView extends Component {
     super(props);
     this.state = {
       data: {},
+
       loading: true
     };
   }
